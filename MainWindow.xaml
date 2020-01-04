@@ -1,0 +1,59 @@
+﻿<Window x:Class="WpfProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfProject"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="650">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel x:Name="Dock"   LastChildFill="True">
+        <StackPanel DockPanel.Dock="Right" Width="120">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="C:/Users/周志航/Desktop/问题/WPFImage//WPFImage/theBackgroundOfTheTextBlock.jpg" Stretch="Fill"/>
+            </StackPanel.Background>
+            <TextBlock FontWeight="Bold" FontSize="80" TextWrapping="Wrap" TextAlignment ="Center">
+                中国象棋
+            </TextBlock>
+            <Button x:Name="START" Click="Button_Click_Start">
+                <Button.Height>50</Button.Height>
+                <Button.FontSize>30</Button.FontSize>
+                <Button.Margin>0,10,0,0</Button.Margin>
+                <Button.Background>
+                    <ImageBrush ImageSource="C:/Users/周志航/Desktop/问题/WPFImage//WPFImage/START.jpg" Stretch="Fill"/>
+                </Button.Background>
+
+            </Button>
+            <Button x:Name="RESTART" Click="Button_Click_Restart">
+                <Button.Height>50</Button.Height>
+                <Button.FontSize>30</Button.FontSize>
+                <Button.Margin>0,10,0,0</Button.Margin>
+                <Button.Background>
+                    <ImageBrush ImageSource="C:/Users/周志航/Desktop/问题/WPFImage//WPFImage/RESTART.jpg" Stretch="Fill"/>
+                </Button.Background>
+
+            </Button>
+        </StackPanel>
+        <Grid x:Name="grid"
+              ShowGridLines="False"/>
+    </DockPanel>
+</Window>
