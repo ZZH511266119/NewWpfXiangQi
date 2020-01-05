@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="650">
+        Title="中国象棋" Height="720" Width="780">
+    <Window.Background>
+        <ImageBrush ImageSource="C:/Users/周志航/Desktop/问题/WPFImage//WPFImage/theBackgroundOfTheTextBlock.jpg" Stretch="Fill"/>
+    </Window.Background>
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Transparent"/>
@@ -28,16 +31,13 @@
 
     <DockPanel x:Name="Dock"   LastChildFill="True">
         <StackPanel DockPanel.Dock="Right" Width="120">
-            <StackPanel.Background>
-                <ImageBrush ImageSource="C:/Users/周志航/Desktop/问题/WPFImage//WPFImage/theBackgroundOfTheTextBlock.jpg" Stretch="Fill"/>
-            </StackPanel.Background>
             <TextBlock FontWeight="Bold" FontSize="80" TextWrapping="Wrap" TextAlignment ="Center">
                 中国象棋
             </TextBlock>
             <Button x:Name="START" Click="Button_Click_Start">
                 <Button.Height>50</Button.Height>
                 <Button.FontSize>30</Button.FontSize>
-                <Button.Margin>0,10,0,0</Button.Margin>
+                <Button.Margin>0,35,0,0</Button.Margin>
                 <Button.Background>
                     <ImageBrush ImageSource="C:/Users/周志航/Desktop/问题/WPFImage//WPFImage/START.jpg" Stretch="Fill"/>
                 </Button.Background>
@@ -53,6 +53,13 @@
 
             </Button>
         </StackPanel>
+        <TextBlock x:Name="Message" DockPanel.Dock="Bottom">
+            <TextBlock.Height>50</TextBlock.Height>
+            <TextBlock.Width>780</TextBlock.Width>
+            <TextBlock.FontSize>30</TextBlock.FontSize>
+            <TextBlock.FontStyle>italic</TextBlock.FontStyle>
+            <TextBlock.TextAlignment>center</TextBlock.TextAlignment>
+        </TextBlock>
         <Grid x:Name="grid"
               ShowGridLines="False"/>
     </DockPanel>

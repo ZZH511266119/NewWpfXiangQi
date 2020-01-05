@@ -35,6 +35,7 @@ namespace WpfProject
             if(startIsClick == false)
             {
                 startIsClick = true;
+                Message.Text = "Red Player";
                 RedrawGrid();
             }
         }
@@ -48,6 +49,7 @@ namespace WpfProject
                 grid.RowDefinitions.Clear();
                 grid.Children.Clear();
                 CreateGridWithBoard();
+                Message.Text = "Red Player";
                 RedrawGrid();
             }
         }
@@ -61,11 +63,12 @@ namespace WpfProject
                 grid.RowDefinitions.Clear();
                 grid.Children.Clear();
                 CreateGridWithBoard();
+                Message.Text = "";
                 startIsClick = false;
             }
         }
 
-        public void CreateGridWithBoard()
+        public void CreateGridWithBoard()//here
         {
 
             ImageBrush b3 = new ImageBrush();
@@ -90,6 +93,7 @@ namespace WpfProject
                     button.SetValue(XQRowProperty, row);
                     button.SetValue(XQColProperty, col);
                     button.Click += Button_Click;
+                    //button.Click += AI;
                     button.BorderBrush = Brushes.Transparent; //按钮边框透明
                     Grid.SetRow(button, row);
                     Grid.SetColumn(button, col);
@@ -108,39 +112,40 @@ namespace WpfProject
             int btnCol = (int)((Button)sender).GetValue(XQColProperty);
 
 
-
             if (view.game.state == "move" && view.game.controller.board[btnRow, btnCol].GetName() == "将" && startIsClick == true)
             {
-                HandleClick(btnRow, btnCol);
                 if (view.game.WhoWin())
                 {
+                    HandleClick(btnRow, btnCol);
                     MessageBox.Show("Game over, black player win! Press button restart the game.");
                     Restart();
                 }
                 else
                 {
+                    HandleClick(btnRow, btnCol);
                     MessageBox.Show("Game over, red player win! Press button restart the game.");
                     Restart();
                 }
             }
-            /**AI
-            else if (view.game.state == "move" && view.game.color == "red") 
-            {
-                handleclick(btnRow, btnCol);
-                view.AIinput();
-                view.game.SwitchPlayer();
-                RedrawGrid();
-            }
-            **/
-            else if (startIsClick == true)
+
+            else if(startIsClick == true)
             {
                 HandleClick(btnRow, btnCol);
-                RedrawGrid();//shan
+                WhoToPlay();
             }
 
         }
 
-
+        private void AI(object sender, RoutedEventArgs e)
+        {
+            if (view.game.color == "black")
+            {
+                RedrawGrid();
+                view.AIinput();
+                view.game.SwitchPlayer();
+                RedrawGrid();
+            }
+        }
 
         public static readonly DependencyProperty XQRowProperty =
             DependencyProperty.Register("XQRow", typeof(int), typeof(Button));
@@ -203,7 +208,7 @@ namespace WpfProject
 
         }
 
-        public void HandleClick(int row, int col)
+        public void HandleClick(int row, int col)//here
         {
             
             switch (view.game.state)
@@ -234,8 +239,7 @@ namespace WpfProject
                     break;
 
             }
-            
-            /** AI
+            /**
             if(view.game.color == "red")
             {
                 switch (view.game.state)
@@ -267,8 +271,22 @@ namespace WpfProject
 
                 }
             }
+            **/
             RedrawGrid();
-    **/
+        }
+
+        public void WhoToPlay()
+        {
+            switch (view.game.color)
+            {
+                case "red":
+                    Message.Text = "Red Player";
+                    break;
+
+                case "black":
+                    Message.Text = "Black Player";
+                    break;
+            }
         }
 
 
